@@ -1,0 +1,30 @@
+{
+  "app": {
+    "title": "zma_example",
+    "headerTitle": "zma_example",
+    "headerColor": {
+      "light": "#1843EF",
+      "dark": "#ff0000"
+    },
+    "textColor": {
+      "light": "white",
+      "dark": "white"
+    },
+    "statusBarColor": {
+      "light": "#1843EF",
+      "dark": "#000000"
+    },
+    "leftButton": "back",
+    "statusBar": "normal",
+    "actionBarHidden": false,
+    "hideAndroidBottomNavigationBar": false,
+    "hideIOSSafeAreaBottom": false,
+    "textAlign": "left",
+    "selfControlLoading": false
+  },
+  "debug": false,
+  "listCSS": [],
+  "listSyncJS": [],
+  "listAsyncJS": [],
+  "template": {}
+}

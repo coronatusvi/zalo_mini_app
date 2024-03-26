@@ -1,0 +1,17 @@
+{
+  "cwd": "/home/coronatus/Downloads/WorkDocument/zma_example",
+  "newProject": true,
+  "name": "zma_example",
+  "package": "zmp-ui",
+  "framework": "react",
+  "cssPreProcessor": "scss",
+  "template": "blank",
+  "includeTailwind": false,
+  "theming": {
+    "color": "#007aff",
+    "darkTheme": false,
+    "fillBars": false
+  },
+  "customBuild": false,
+  "stateManagement": "recoil"
+}
