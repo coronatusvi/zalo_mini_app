@@ -1,4 +1,5 @@
 zmp init
+![image](https://github.com/coronatusvi/zalo_mini_app/assets/89189270/752c7817-4671-4160-bfcc-8ba4762dd771)
 
   _____  __  __   ____       ____   _       ___ 
  |__  / |  \/  | |  _ \     / ___| | |     |_ _|
