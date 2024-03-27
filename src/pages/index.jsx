@@ -1,16 +1,11 @@
-import React from 'react';
-import {
-  Page
-} from 'zmp-ui';
+import React from "react";
+import { Page, Text } from "zmp-ui";
+
+import BottomNavigationPage from "./buttomNavigation";
+import UserPage from "./userPage";
 
 const HomePage = () => {
-
-
-  return (
-    <Page className="page">
-      Hello Zalo Mini App
-    </Page>
-  );
-}
+  return <Text>Chao mung den voi ZALO MINI APP</Text>;
+};
 
 export default HomePage;
