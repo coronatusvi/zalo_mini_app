@@ -1,12 +1,25 @@
+.page {
+  padding: 16px 16px 96px 16px;
+}
 
-    .page {
-      padding: 16px 16px 96px 16px;
-    }
-    
-    .section-container {
-      padding: 16px;
-      background: #ffffff;
-      border-radius: 8px;
-      margin-bottom: 24px;
-    }    
-    
+.section-container {
+  padding: 16px;
+  background: #ffffff;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.header {
+  text-align: center;
+  font-size: 16px;
+  padding-bottom: 10px;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+}
+
+.start {
+  align-items: center;
+}

@@ -12,18 +12,11 @@ const BottomNavigationPage = (props) => {
       onChange={(key) => setActiveTab(key)}
     >
       <BottomNavigation.Item
-        onClick={() => navigate("/")}
-        key="chat"
-        label="Tin Nhắn"
-        icon={<Icon icon="zi-chat" />}
-        activeIcon={<Icon icon="zi-chat-solid" />}
-      />
-      <BottomNavigation.Item
-        onClick={() => navigate("/")}
-        label="Danh bạ"
-        key="contact"
-        icon={<Icon icon="zi-call" />}
-        activeIcon={<Icon icon="zi-call-solid" />}
+        onClick={() => navigate("/list")}
+        label="Danh sách"
+        key="list"
+        icon={<Icon icon="zi-list-1" />}
+        activeIcon={<Icon icon="zi-list-2" />}
       />
       <BottomNavigation.Item
         onClick={() => navigate("/")}
@@ -33,7 +26,7 @@ const BottomNavigationPage = (props) => {
         activeIcon={<Icon icon="zi-more-grid-solid" />}
       />
       <BottomNavigation.Item
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/item")}
         key="timeline"
         label="Nhật ký"
         icon={<Icon icon="zi-clock-1" />}

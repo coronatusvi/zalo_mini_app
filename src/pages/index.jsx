@@ -1,11 +1,13 @@
 import React from "react";
-import { Page, Text } from "zmp-ui";
-
-import BottomNavigationPage from "./buttomNavigation";
-import UserPage from "./userPage";
+import { Button, Page, Text } from "zmp-ui";
 
 const HomePage = () => {
-  return <Text>Chao mung den voi ZALO MINI APP</Text>;
+  return (
+    <Page className="page home">
+      <Text className="header">Chào mừng đến với ZALO MINI APP</Text>
+      <Button className="start">BẮT ĐẦU</Button>
+    </Page>
+  );
 };
 
 export default HomePage;

@@ -9,11 +9,13 @@ import {
 } from "zmp-ui";
 import { RecoilRoot } from "recoil";
 import HomePage from "../pages";
-import AboutPage from "../pages/aboutUser";
+import AboutPage from "../pages/user/aboutUser";
+import FormPage from "../pages/user/formPage";
+import UserDetailPage from "../pages/user/userDetailPage";
+import UserPage from "../pages/user/userPage";
 import BottomNavigationPage from "../pages/buttomNavigation";
-import FormPage from "../pages/formPage";
-import UserDetailPage from "../pages/userDetailPage";
-import UserPage from "../pages/userPage";
+import ExamplePage from "../pages/product/editItemPage";
+import ItemPage from "../pages/product/item";
 
 const MyApp = () => {
   return (
@@ -24,6 +26,12 @@ const MyApp = () => {
             <Page className="page">
               <AnimationRoutes direction="left">
                 <Route path="/" element={<HomePage></HomePage>}></Route>
+                <Route
+                  path="/list"
+                  element={<ExamplePage></ExamplePage>}
+                ></Route>
+                <Route path="/item" element={<ItemPage></ItemPage>}></Route>
+                
                 <Route path="/user" element={<UserPage></UserPage>}></Route>
                 <Route path="/about" element={<AboutPage></AboutPage>}></Route>
                 <Route path="/form" element={<FormPage></FormPage>}></Route>
