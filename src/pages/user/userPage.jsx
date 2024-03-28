@@ -1,33 +1,42 @@
 import React, { useEffect, useState } from "react";
 import { List, Icon, useNavigate, Text } from "zmp-ui";
-import { useRecoilValue } from "recoil";
-import { userState } from "../../state";
 
 import UserCard from "../../components/user-card";
+import { getUserInfo } from "zmp-sdk";
 
 export default function UserPage() {
-  // const [data, setData] = useState();
+  const [data, setData] = useState({
+    id: "",
+    name: "",
+    avatar: "",
+    idByOA: "",
+  });
+  const [user, setuser] = useState(null);
 
-  // useEffect(() => {
-  //   // Thực hiện các hoạt động có thể gây cập nhật trạng thái ở đây
-  //   // Ví dụ: Gọi API, thực hiện các thao tác bất đồng bộ
-  //   fetchData();
-  // }, []); // Chúng ta sử dụng một mảng rỗng ở đây để chỉ thực hiện hiệu ứng này một lần khi component được mount
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { userInfo } = await getUserInfo({});
+        setData(userInfo);
+        // console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-  // const fetchData = async () => {
-  //   try {
-  //     setData(useRecoilValue(userState));
-  //   } catch (error) {
-  //     console.error("Error fetching data:", error);
-  //   }
-  // };
+    fetchData();
+  }, []);
 
-  const user = useRecoilValue(userState);
+  useEffect(() => {
+    console.log("Data đã được cập nhật:", data);
+    setuser(data);
+  }, [data]);
+
   const navigate = useNavigate();
   return (
     <>
       <div className="section-container">
-        <UserCard user={user.userInfo} />
+        <UserCard user={user || data.userInfo} />
       </div>
       <div className="section-container">
         <List>

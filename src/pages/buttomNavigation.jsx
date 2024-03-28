@@ -28,9 +28,9 @@ const BottomNavigationPage = (props) => {
       <BottomNavigation.Item
         onClick={() => navigate("/item")}
         key="timeline"
-        label="Nhật ký"
-        icon={<Icon icon="zi-clock-1" />}
-        activeIcon={<Icon icon="zi-clock-1-solid" />}
+        label="Ảnh"
+        icon={<Icon icon="zi-gallery" />}
+        activeIcon={<Icon icon="zi-photo" />}
       />
       <BottomNavigation.Item
         onClick={() => navigate("/")}

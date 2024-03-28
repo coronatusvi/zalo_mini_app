@@ -10,10 +10,25 @@ import {
   useNavigate,
 } from "zmp-ui";
 import { useRecoilValue } from "recoil";
-import { displayNameState, userState } from "../../state";
+import { displayNameState } from "../../state";
 
 const UserDetailPage = () => {
-  const { userInfo: user } = useRecoilValue(userState);
+  const [user, setData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { userInfo } = await getUserInfo({});
+        setData(userInfo);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // const { userInfo: user } = useRecoilValue(userState);
   const displayName = useRecoilValue(displayNameState);
   const navigate = useNavigate();
   return (

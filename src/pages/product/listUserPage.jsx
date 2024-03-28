@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Box, Button, ImageViewer, Input, Page, Text } from "zmp-ui";
 import "../../css/itemEdit.scss";
+import "../../css/app.scss";
 
 export default function ExamplePage() {
   const [items, setItems] = useState([
@@ -10,7 +11,13 @@ export default function ExamplePage() {
       age: "15",
     },
   ]);
-  const [itemData, setItemData] = useState({ avatar: "", name: "", age: "" });
+  const imgUrl =
+    "https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o=";
+  const [itemData, setItemData] = useState({
+    avatar: "",
+    name: "",
+    age: "",
+  });
   const [images, setImages] = useState([]);
   const [editMode, setEditMode] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
@@ -19,9 +26,13 @@ export default function ExamplePage() {
 
   const addItem = () => {
     if (itemData.name.trim() !== "") {
-      setImages([...images, itemData.avatar]);
-      setItems([...items, itemData]);
-      setItemData({ avatar: "", name: "", age: "" });
+      if (itemData.avatar != "") {
+        setItems([...items, itemData]);
+      } else {
+        itemData.avatar = imgUrl;
+        setItems([...items, itemData]);
+      }
+      setItemData({ avatar: imgUrl, name: "", age: "" });
     }
   };
 
@@ -79,9 +90,13 @@ export default function ExamplePage() {
         />
       </Box>
       {editMode ? (
-        <Button onClick={updateItem}>Update Item</Button>
+        <Button id="update" onClick={updateItem}>
+          Update Item
+        </Button>
       ) : (
-        <Button onClick={addItem}>Add Item</Button>
+        <Button id="add" onClick={addItem}>
+          Add Item
+        </Button>
       )}
       <div>
         {items.map((item, index) => (
@@ -111,12 +126,12 @@ export default function ExamplePage() {
                 images={images}
                 visible={visible}
               />
-              <div>
+              <div className="text-edit">
                 <Text>Name: {item.name}</Text>
                 <Text>Age: {item.age}</Text>
               </div>
             </div>
-            <div>
+            <div className="edit">
               <Button onClick={() => editItem(index)}>Edit</Button>
               <Button onClick={() => deleteItem(index)}>Delete</Button>
             </div>
