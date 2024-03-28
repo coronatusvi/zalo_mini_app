@@ -8,6 +8,7 @@ import UserCard from "../../components/user-card";
 export default function UserPage() {
   const user = useRecoilValue(userState);
   const navigate = useNavigate();
+
   return (
     <Page>
       <div className="section-container">

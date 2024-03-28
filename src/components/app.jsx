@@ -14,8 +14,8 @@ import FormPage from "../pages/user/formPage";
 import UserDetailPage from "../pages/user/userDetailPage";
 import UserPage from "../pages/user/userPage";
 import BottomNavigationPage from "../pages/buttomNavigation";
-import ExamplePage from "../pages/product/editItemPage";
-import ItemPage from "../pages/product/item";
+import ExamplePage from "../pages/product/listUserPage";
+import ItemPage from "../pages/product/itemUser";
 
 const MyApp = () => {
   return (
@@ -31,7 +31,7 @@ const MyApp = () => {
                   element={<ExamplePage></ExamplePage>}
                 ></Route>
                 <Route path="/item" element={<ItemPage></ItemPage>}></Route>
-                
+
                 <Route path="/user" element={<UserPage></UserPage>}></Route>
                 <Route path="/about" element={<AboutPage></AboutPage>}></Route>
                 <Route path="/form" element={<FormPage></FormPage>}></Route>
