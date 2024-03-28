@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Avatar,
   List,
@@ -11,15 +11,23 @@ import {
 } from "zmp-ui";
 import { useRecoilValue } from "recoil";
 import { displayNameState } from "../../state";
+import { getUserInfo } from "zmp-sdk";
 
 const UserDetailPage = () => {
-  const [user, setData] = useState(null);
+  const [data, setData] = useState({
+    id: "",
+    name: "",
+    avatar: "",
+    idByOA: "",
+  });
+  const [user, setuser] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const { userInfo } = await getUserInfo({});
         setData(userInfo);
+        // console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -27,6 +35,11 @@ const UserDetailPage = () => {
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+    // console.log("Data đã được cập nhật:", data);
+    setuser(data);
+  }, [data]);
 
   // const { userInfo: user } = useRecoilValue(userState);
   const displayName = useRecoilValue(displayNameState);
@@ -44,14 +57,14 @@ const UserDetailPage = () => {
             story="default"
             size={96}
             online
-            src={user.avatar.startsWith("http") ? user.avatar : undefined}
+            src={data.avatar.startsWith("http") ? data.avatar : undefined}
           >
-            {user.avatar}
+            {data.avatar}
           </Avatar>
         </Box>
         <Box flex flexDirection="row" alignItems="center" ml={8}>
           <Box>
-            <Text.Title>{displayName || user.name}</Text.Title>
+            <Text.Title>{displayName || data.name}</Text.Title>
           </Box>
           <Box ml={4}>
             <Button
@@ -67,9 +80,9 @@ const UserDetailPage = () => {
       <Box m={0} p={0} mt={4}>
         <div className="section-container">
           <List>
-            <List.Item title="Name" subTitle={user.name} />
+            <List.Item title="Name" subTitle={data.name} />
             <List.Item title="Display Name" subTitle={displayName} />
-            <List.Item title="ID" subTitle={user.id} />
+            <List.Item title="ID" subTitle={data.id} />
           </List>
         </div>
       </Box>

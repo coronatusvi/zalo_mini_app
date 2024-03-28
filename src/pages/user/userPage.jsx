@@ -28,7 +28,7 @@ export default function UserPage() {
   }, []);
 
   useEffect(() => {
-    console.log("Data đã được cập nhật:", data);
+    // console.log("Data đã được cập nhật:", data);
     setuser(data);
   }, [data]);
 
