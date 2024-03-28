@@ -79,55 +79,41 @@ export default function ExamplePage() {
       )}
       <ul>
         {items.map((item, index) => (
-          <li key={index}>
+          <div key={index} className="boxuser">
             <div className="user">
-              <Box mt={2}>
-                <Box flex flexDirection="row" flexWrap="nowrap">
-                  {images.map((img, index) => (
-                    <Box
-                      mr={1}
-                      key={index}
-                      style={{
-                        width: "68px",
-                        height: "69px",
-                        borderRadius: "8px",
-                        overflow: "hidden",
-                      }}
-                    >
-                      <img
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover",
-                        }}
-                        role="presentation"
-                        onClick={() => {
-                          setActiveIndex(index);
-                          setVisible(true);
-                        }}
-                        src={img}
-                        alt={index}
-                      />
-                    </Box>
-                  ))}
-                </Box>
-                <ImageViewer
-                  onClose={() => setVisible(false)}
-                  activeIndex={activeIndex}
-                  images={images}
-                  visible={visible}
+              <Box>
+                <img
+                  style={{
+                    width: "100px",
+                    height: "100px",
+                    objectFit: "cover",
+                  }}
+                  role="presentation"
+                  onClick={() => {
+                    setActiveIndex(1);
+                    setVisible(true);
+                  }}
+                  src={item.avatar}
+                  alt={0}
                 />
               </Box>
+
+              <ImageViewer
+                onClose={() => setVisible(false)}
+                activeIndex={activeIndex}
+                images={images}
+                visible={visible}
+              />
               <div>
                 <Text>Name: {item.name}</Text>
                 <Text>Age: {item.age}</Text>
               </div>
             </div>
-            <div>
+            <div >
               <Button onClick={() => editItem(index)}>Edit</Button>
               <Button onClick={() => deleteItem(index)}>Delete</Button>
             </div>
-          </li>
+          </div>
         ))}
       </ul>
     </Page>
