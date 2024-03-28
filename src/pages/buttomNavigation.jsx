@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BottomNavigation, Icon, Page, useNavigate } from "zmp-ui";
 
 const BottomNavigationPage = (props) => {
-  const [activeTab, setActiveTab] = useState("discovery");
+  const [activeTab, setActiveTab] = useState("me");
   const { title } = props;
   const navigate = useNavigate();
   return (
@@ -19,7 +19,7 @@ const BottomNavigationPage = (props) => {
         activeIcon={<Icon icon="zi-list-2" />}
       />
       <BottomNavigation.Item
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/home")}
         label="Khám phá"
         key="discovery"
         icon={<Icon icon="zi-more-grid" />}
@@ -33,7 +33,7 @@ const BottomNavigationPage = (props) => {
         activeIcon={<Icon icon="zi-clock-1-solid" />}
       />
       <BottomNavigation.Item
-        onClick={() => navigate("/user")}
+        onClick={() => navigate("/")}
         key="me"
         label="Cá nhân"
         icon={<Icon icon="zi-user" />}

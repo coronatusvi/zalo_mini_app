@@ -25,14 +25,14 @@ const MyApp = () => {
           <ZMPRouter>
             <Page className="page">
               <AnimationRoutes direction="left">
-                <Route path="/" element={<HomePage></HomePage>}></Route>
+                <Route path="/home" element={<HomePage></HomePage>}></Route>
                 <Route
                   path="/list"
                   element={<ExamplePage></ExamplePage>}
                 ></Route>
                 <Route path="/item" element={<ItemPage></ItemPage>}></Route>
 
-                <Route path="/user" element={<UserPage></UserPage>}></Route>
+                <Route path="/" element={<UserPage></UserPage>}></Route>
                 <Route path="/about" element={<AboutPage></AboutPage>}></Route>
                 <Route path="/form" element={<FormPage></FormPage>}></Route>
                 <Route

@@ -32,7 +32,7 @@ export default function ItemPage() {
       <Text.Title size="small">ImageViewer</Text.Title>
       <Box mt={6}>
         <Box>
-          <Text.Title size="small">Usage</Text.Title>
+          <Text.Title size="small">Khi nào bạn cần?</Text.Title>
         </Box>
         <Box mt={2}>
           <Text size="xSmall" className="input-desc">

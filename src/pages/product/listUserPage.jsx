@@ -3,7 +3,13 @@ import { Box, Button, ImageViewer, Input, Page, Text } from "zmp-ui";
 import "../../css/itemEdit.scss";
 
 export default function ExamplePage() {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState([
+    {
+      avatar: "https://zaloweb.me/wp-content/uploads/2022/01/zalo-web.jpg",
+      name: "Zalo",
+      age: "15",
+    },
+  ]);
   const [itemData, setItemData] = useState({ avatar: "", name: "", age: "" });
   const [images, setImages] = useState([]);
   const [editMode, setEditMode] = useState(false);
@@ -22,7 +28,7 @@ export default function ExamplePage() {
   const editItem = (index) => {
     setEditMode(true);
     setEditIndex(index);
-    setItemName(items[index]);
+    setItemData(items[index]);
   };
 
   const updateItem = () => {
@@ -77,13 +83,14 @@ export default function ExamplePage() {
       ) : (
         <Button onClick={addItem}>Add Item</Button>
       )}
-      <ul>
+      <div>
         {items.map((item, index) => (
           <div key={index} className="boxuser">
             <div className="user">
               <Box>
                 <img
                   style={{
+                    borderRadius: "50%",
                     width: "100px",
                     height: "100px",
                     objectFit: "cover",
@@ -109,13 +116,13 @@ export default function ExamplePage() {
                 <Text>Age: {item.age}</Text>
               </div>
             </div>
-            <div >
+            <div>
               <Button onClick={() => editItem(index)}>Edit</Button>
               <Button onClick={() => deleteItem(index)}>Delete</Button>
             </div>
           </div>
         ))}
-      </ul>
+      </div>
     </Page>
   );
 }
