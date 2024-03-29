@@ -1,7 +1,7 @@
 export const fetchImages = async () => {
   try {
     const response = await fetch(
-      "https://api.slingacademy.com/v1/sample-data/photos?offset=5&limit=20"
+      "https://api.slingacademy.com/v1/sample-data/photos?offset=5&limit=100"
     );
     const data = await response.json();
 

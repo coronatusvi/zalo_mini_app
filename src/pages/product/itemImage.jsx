@@ -20,7 +20,7 @@ export default function ItemPage() {
   }, []);
 
   return (
-    <Page className="section-container">
+    <div>
       {isLoading ? (
         <>
           {" "}
@@ -81,6 +81,6 @@ export default function ItemPage() {
       ) : (
         <LoadingPage />
       )}
-    </Page>
+    </div>
   );
 }
