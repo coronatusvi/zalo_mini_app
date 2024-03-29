@@ -12,17 +12,9 @@ export default function ExamplePage() {
     name: "",
     age: "",
   });
-  const [items, setItems] = useState([
-    {
-      id: 0,
-      avatar: "https://zaloweb.me/wp-content/uploads/2022/01/zalo-web.jpg",
-      name: "Zalo",
-      age: "15",
-    },
-  ]);
 
   // Khởi tạo state cho danh sách người dùng
-  const [users, setUsers] = React.useState(() => {
+  const [items, setItems] = useState(() => {
     // Lấy danh sách người dùng từ Local Storage hoặc trả về một mảng trống nếu không có
     const storedUsers = JSON.parse(localStorage.getItem("users"));
     return (
@@ -40,21 +32,20 @@ export default function ExamplePage() {
   // Function để thêm hoặc cập nhật người dùng
   const addOrUpdateUser = (newUser) => {
     // Tìm kiếm xem người dùng đã tồn tại trong danh sách hay chưa
-    const userIndex = users.findIndex((user) => user.id === newUser.id);
+    const userIndex = items.findIndex((user) => user.id === newUser.id);
 
     // Nếu người dùng đã tồn tại, cập nhật thông tin của họ
     if (userIndex !== -1) {
-      const updatedUsers = [...users];
+      const updatedUsers = [...items];
       updatedUsers[userIndex] = newUser;
-      setUsers(updatedUsers);
+      setItems(updatedUsers);
     } else {
       // Nếu không, thêm người dùng mới vào danh sách
-      setUsers((prevUsers) => [...prevUsers, newUser]);
+      setItems((prevUsers) => [...prevUsers, newUser]);
     }
 
     // Lưu danh sách người dùng vào Local Storage
-    localStorage.setItem("users", JSON.stringify(users));
-    console.log(users, items);
+    localStorage.setItem("users", JSON.stringify(items));
   };
 
   const [images, setImages] = useState([]);

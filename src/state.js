@@ -2,5 +2,8 @@ import { atom } from "recoil";
 
 export const displayNameState = atom({
   key: "displayName",
-  default: "",
+  default: {
+    userName: "",
+    displayName: "Display Name",
+  },
 });

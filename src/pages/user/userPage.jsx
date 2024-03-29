@@ -4,6 +4,8 @@ import { List, Icon, useNavigate, Text, Page } from "zmp-ui";
 import UserCard from "../../components/user-card";
 import { getUserInfo } from "zmp-sdk";
 import LoadingPage from "../../components/utils/loadingPage";
+import { useRecoilValue } from "recoil";
+import { displayNameState } from "../../state";
 
 export default function UserPage() {
   const [data, setData] = useState({
@@ -12,31 +14,38 @@ export default function UserPage() {
     avatar: "",
     idByOA: "",
   });
+
   const [isLoading, setIsLoading] = useState(false);
 
+  const [{ _, displayName }, setNameState] = useState(
+    useRecoilValue(displayNameState)
+  );
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
         const { userInfo } = await getUserInfo({});
-        setData(userInfo);
-        if (data) {
-          // console.log("Data đã được cập nhật:", data);
+        // Kiểm tra xem userInfo có thay đổi trước khi gọi setData
+        if (
+          userInfo.id !== data.id ||
+          userInfo.name !== data.name ||
+          userInfo.avatar !== data.avatar ||
+          userInfo.idByOA !== data.idByOA
+        ) {
           setIsLoading(true);
+          setData(userInfo);
         }
       } catch (error) {
-        console.log("Lối khi getUserInfo: ", error);
+        console.log("Lỗi khi getUserInfo: ", error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [data]);
 
   useEffect(() => {
-    if (data) {
-      // console.log("Data đã được cập nhật:", data);
-      setIsLoading(true);
-    }
-  }, [data]);
+    setData((pre) => ({ ...pre, ["name"]: displayName }));
+  }, []);
 
   const navigate = useNavigate();
   return (

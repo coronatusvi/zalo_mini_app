@@ -41,8 +41,7 @@ const UserDetailPage = () => {
     setuser(data);
   }, [data]);
 
-  // const { userInfo: user } = useRecoilValue(userState);
-  const displayName = useRecoilValue(displayNameState);
+  const { userName, displayName } = useRecoilValue(displayNameState);
   const navigate = useNavigate();
   return (
     <Page className="page">
@@ -80,7 +79,7 @@ const UserDetailPage = () => {
       <Box m={0} p={0} mt={4}>
         <div className="section-container">
           <List>
-            <List.Item title="Name" subTitle={data.name} />
+            <List.Item title="User Name" subTitle={userName || data.name} />
             <List.Item title="Display Name" subTitle={displayName} />
             <List.Item title="ID" subTitle={data.id} />
           </List>
