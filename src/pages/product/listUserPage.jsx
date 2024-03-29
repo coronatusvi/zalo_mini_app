@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Button, Icon, ImageViewer, Input, Page, Text } from "zmp-ui";
 import "../../css/itemEdit.scss";
 import "../../css/app.scss";
+import LoadingPage from "../../components/utils/loadingPage";
 
 export default function ExamplePage() {
+  const [isLoading, setIsLoading] = useState(true);
   const imgUrl =
     "https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o=";
   const [itemData, setItemData] = useState({
@@ -83,10 +85,13 @@ export default function ExamplePage() {
     localStorage.removeItem("users");
     location.reload();
     console.log("Delete");
+    setIsLoading(false);
   };
 
-  console.log(items);
-  return (
+  useEffect(() => {
+    setIsLoading(true);
+  }, [isLoading]);
+  return isLoading ? (
     <Page>
       <h2 className="item">
         User Management
@@ -180,5 +185,7 @@ export default function ExamplePage() {
         ))}
       </div>
     </Page>
+  ) : (
+    <LoadingPage />
   );
 }
