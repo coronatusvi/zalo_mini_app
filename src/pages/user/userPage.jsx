@@ -20,18 +20,14 @@ export default function UserPage() {
   const [{ _, displayName }, setNameState] = useState(
     useRecoilValue(displayNameState)
   );
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const { userInfo } = await getUserInfo({});
         // Kiểm tra xem userInfo có thay đổi trước khi gọi setData
-        if (
-          userInfo.id !== data.id ||
-          userInfo.name !== data.name ||
-          userInfo.avatar !== data.avatar ||
-          userInfo.idByOA !== data.idByOA
-        ) {
+        if (!data.id) {
+          userInfo.name = displayName;
           setIsLoading(true);
           setData(userInfo);
         }
@@ -41,10 +37,6 @@ export default function UserPage() {
     };
 
     fetchData();
-  }, [data]);
-
-  useEffect(() => {
-    setData((pre) => ({ ...pre, ["name"]: displayName }));
   }, []);
 
   const navigate = useNavigate();
