@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { List, Icon, useNavigate, Text, Page } from "zmp-ui";
-
 import UserCard from "../../components/user-card";
-import { getUserInfo } from "zmp-sdk";
 import LoadingPage from "../../components/utils/loadingPage";
 import { useRecoilValue } from "recoil";
 import { displayNameState } from "../../state";
+import { fetchUserData } from "../../apis/userDataCall";
 
 export default function UserPage() {
   const [data, setData] = useState({
@@ -14,32 +13,19 @@ export default function UserPage() {
     avatar: "",
     idByOA: "",
   });
-
   const [isLoading, setIsLoading] = useState(false);
-
   const [{ _, displayName }, setNameState] = useState(
     useRecoilValue(displayNameState)
   );
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { userInfo } = await getUserInfo({});
-        // Kiểm tra xem userInfo có thay đổi trước khi gọi setData
-        if (!data.id) {
-          userInfo.name = displayName;
-          setIsLoading(true);
-          setData(userInfo);
-        }
-      } catch (error) {
-        console.log("Lỗi khi getUserInfo: ", error);
-      }
-    };
-
-    fetchData();
-  }, []);
+    fetchUserData(displayName, setData, setIsLoading);
+    setData((pre) => ({ ...pre, name: displayName }));
+    setIsLoading(true); // Gọi hàm fetchUserData
+  }, [displayName]);
 
   const navigate = useNavigate();
+
   return (
     <Page>
       {isLoading ? (

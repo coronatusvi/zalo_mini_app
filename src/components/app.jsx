@@ -40,10 +40,10 @@ const MyApp = () => {
                   element={<UserDetailPage></UserDetailPage>}
                 ></Route>
               </AnimationRoutes>
-              <React.Fragment>
-                <BottomNavigationPage />
-              </React.Fragment>
             </Page>
+            <React.Fragment>
+              <BottomNavigationPage />
+            </React.Fragment>
           </ZMPRouter>
         </SnackbarProvider>
       </App>
