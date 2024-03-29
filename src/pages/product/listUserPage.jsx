@@ -4,20 +4,59 @@ import "../../css/itemEdit.scss";
 import "../../css/app.scss";
 
 export default function ExamplePage() {
+  const imgUrl =
+    "https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o=";
+  const [itemData, setItemData] = useState({
+    id: 0,
+    avatar: "",
+    name: "",
+    age: "",
+  });
   const [items, setItems] = useState([
     {
+      id: 0,
       avatar: "https://zaloweb.me/wp-content/uploads/2022/01/zalo-web.jpg",
       name: "Zalo",
       age: "15",
     },
   ]);
-  const imgUrl =
-    "https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o=";
-  const [itemData, setItemData] = useState({
-    avatar: "",
-    name: "",
-    age: "",
+
+  // Khởi tạo state cho danh sách người dùng
+  const [users, setUsers] = React.useState(() => {
+    // Lấy danh sách người dùng từ Local Storage hoặc trả về một mảng trống nếu không có
+    const storedUsers = JSON.parse(localStorage.getItem("users"));
+    return (
+      storedUsers || [
+        {
+          id: 0,
+          avatar: "https://zaloweb.me/wp-content/uploads/2022/01/zalo-web.jpg",
+          name: "Zalo",
+          age: "15",
+        },
+      ]
+    );
   });
+
+  // Function để thêm hoặc cập nhật người dùng
+  const addOrUpdateUser = (newUser) => {
+    // Tìm kiếm xem người dùng đã tồn tại trong danh sách hay chưa
+    const userIndex = users.findIndex((user) => user.id === newUser.id);
+
+    // Nếu người dùng đã tồn tại, cập nhật thông tin của họ
+    if (userIndex !== -1) {
+      const updatedUsers = [...users];
+      updatedUsers[userIndex] = newUser;
+      setUsers(updatedUsers);
+    } else {
+      // Nếu không, thêm người dùng mới vào danh sách
+      setUsers((prevUsers) => [...prevUsers, newUser]);
+    }
+
+    // Lưu danh sách người dùng vào Local Storage
+    localStorage.setItem("users", JSON.stringify(users));
+    console.log(users, items);
+  };
+
   const [images, setImages] = useState([]);
   const [editMode, setEditMode] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
@@ -26,13 +65,15 @@ export default function ExamplePage() {
 
   const addItem = () => {
     if (itemData.name.trim() !== "") {
+      itemData.id = items.length + 1;
       if (itemData.avatar != "") {
         setItems([...items, itemData]);
       } else {
         itemData.avatar = imgUrl;
         setItems([...items, itemData]);
       }
-      setItemData({ avatar: imgUrl, name: "", age: "" });
+      addOrUpdateUser(itemData);
+      setItemData({ avatar: "", name: "", age: "" });
     }
   };
 
