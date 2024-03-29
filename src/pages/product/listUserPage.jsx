@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Button, ImageViewer, Input, Page, Text } from "zmp-ui";
+import { Box, Button, Icon, ImageViewer, Input, Page, Text } from "zmp-ui";
 import "../../css/itemEdit.scss";
 import "../../css/app.scss";
 
@@ -17,16 +17,7 @@ export default function ExamplePage() {
   const [items, setItems] = useState(() => {
     // Lấy danh sách người dùng từ Local Storage hoặc trả về một mảng trống nếu không có
     const storedUsers = JSON.parse(localStorage.getItem("users"));
-    return (
-      storedUsers || [
-        {
-          id: 0,
-          avatar: "https://zaloweb.me/wp-content/uploads/2022/01/zalo-web.jpg",
-          name: "Zalo",
-          age: "15",
-        },
-      ]
-    );
+    return storedUsers || [];
   });
 
   // Function để thêm hoặc cập nhật người dùng
@@ -57,11 +48,8 @@ export default function ExamplePage() {
   const addItem = () => {
     if (itemData.name.trim() !== "") {
       itemData.id = items.length + 1;
-      if (itemData.avatar != "") {
-        setItems([...items, itemData]);
-      } else {
+      if (itemData.avatar == "") {
         itemData.avatar = imgUrl;
-        setItems([...items, itemData]);
       }
       addOrUpdateUser(itemData);
       setItemData({ avatar: "", name: "", age: "" });
@@ -91,9 +79,20 @@ export default function ExamplePage() {
     setItems(updatedItems);
   };
 
+  const clearDataStorage = () => {
+    localStorage.removeItem("users");
+    location.reload();
+    console.log("Delete");
+  };
+
+  console.log(items);
   return (
     <Page>
-      <h2 className="item">User Management</h2>
+      <h2 className="item">
+        User Management
+        <Icon icon="zi-delete" size={25} onClick={() => clearDataStorage()} />
+      </h2>
+
       <Box>
         <Text>Avata</Text>
         <Input
@@ -164,8 +163,18 @@ export default function ExamplePage() {
               </div>
             </div>
             <div className="edit">
-              <Button onClick={() => editItem(index)}>Edit</Button>
-              <Button onClick={() => deleteItem(index)}>Delete</Button>
+              <Button
+                style={{ fontWeight: "bold" }}
+                onClick={() => editItem(index)}
+              >
+                Edit
+              </Button>
+              <Button
+                style={{ color: "yellow", fontWeight: "bold" }}
+                onClick={() => deleteItem(index)}
+              >
+                Delete
+              </Button>
             </div>
           </div>
         ))}
