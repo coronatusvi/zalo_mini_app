@@ -15,7 +15,7 @@ import UserDetailPage from "../pages/user/userDetailPage";
 import UserPage from "../pages/user/userPage";
 import BottomNavigationPage from "../pages/buttomNavigation";
 import ExamplePage from "../pages/product/listUserPage";
-import ItemPage from "../pages/product/itemUser";
+import ItemPage from "../pages/product/itemImage";
 
 const MyApp = () => {
   return (
