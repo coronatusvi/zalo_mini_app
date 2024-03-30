@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Page, ImageViewer, Box, Text } from "zmp-ui";
+import { ImageViewer, Box, Text } from "zmp-ui";
 import { fetchImages } from "../../apis/imageDataApi";
 import LoadingPage from "../../components/utils/loadingPage";
 

@@ -6,6 +6,7 @@ import LoadingPage from "../../components/utils/loadingPage";
 
 export default function ExamplePage() {
   const [isLoading, setIsLoading] = useState(true);
+
   const imgUrl =
     "https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o=";
   const [itemData, setItemData] = useState({
@@ -21,6 +22,11 @@ export default function ExamplePage() {
     const storedUsers = JSON.parse(localStorage.getItem("users"));
     return storedUsers || [];
   });
+  const [images, setImages] = useState([]);
+  const [editMode, setEditMode] = useState(false);
+  const [editIndex, setEditIndex] = useState(null);
+  const [visible, setVisible] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   // Function để thêm hoặc cập nhật người dùng
   const addOrUpdateUser = (newUser) => {
@@ -40,12 +46,6 @@ export default function ExamplePage() {
     // Lưu danh sách người dùng vào Local Storage
     localStorage.setItem("users", JSON.stringify(items));
   };
-
-  const [images, setImages] = useState([]);
-  const [editMode, setEditMode] = useState(false);
-  const [editIndex, setEditIndex] = useState(null);
-  const [visible, setVisible] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
 
   const addItem = () => {
     if (itemData.name.trim() !== "") {
@@ -91,6 +91,7 @@ export default function ExamplePage() {
   useEffect(() => {
     setIsLoading(true);
   }, [isLoading]);
+
   return isLoading ? (
     <Page>
       <h2 className="item">
