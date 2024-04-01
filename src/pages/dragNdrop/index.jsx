@@ -3,10 +3,10 @@ import "../../css/dragNdrop.scss";
 import DragNDrop from "./dragNdrop";
 
 const defaultData = [
-  { title: "group 1", items: ["1", "2", "3"] },
-  { title: "group 2", items: ["4", "5"] },
-  // { title: "group 3", items: ["6", "7", "8"] },
-  // { title: "group 4", items: ["9", "0"] },
+  { title: "[   I    ]", items: ["Task 1", "Task 2"], finished: false },
+  { title: "[   II   ]", items: ["Task 4", "Task 5"], finished: false },
+  { title: "[   III   ]", items: ["Task 6", "Task 7"], finished: false },
+  { title: "[   IV   ]", items: ["Task 9", "Task 10"], finished: false },
 ];
 
 export default function DemoDragNdrop() {
