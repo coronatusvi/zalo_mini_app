@@ -16,6 +16,7 @@ import UserPage from "../pages/user/userPage";
 import BottomNavigationPage from "../pages/buttomNavigation";
 import ExamplePage from "../pages/product/listUserPage";
 import ItemPage from "../pages/product/listIemImage";
+import DemoDragNdrop from "../pages/dragNdrop";
 
 const MyApp = () => {
   return (
@@ -31,6 +32,10 @@ const MyApp = () => {
                   element={<ExamplePage></ExamplePage>}
                 ></Route>
                 <Route path="/item" element={<ItemPage></ItemPage>}></Route>
+                <Route
+                  path="/drag"
+                  element={<DemoDragNdrop></DemoDragNdrop>}
+                ></Route>
 
                 <Route path="/" element={<UserPage></UserPage>}></Route>
                 <Route path="/about" element={<AboutPage></AboutPage>}></Route>
