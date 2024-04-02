@@ -8,8 +8,14 @@ const HomePage = () => {
       <Text className="header">Chào mừng đến với ZALO MINI APP</Text>
       <h2>Ứng dụng</h2>
       <h1 style={{ color: "green" }}> quản lý người dùng</h1>
+      <h3 className="header">BẮT ĐẦU</h3>
+      <p className="header">vs</p>
       <Button className="start" onClick={() => navigate("/drag")}>
-        BẮT ĐẦU
+        Todo Smart
+      </Button>
+      <hr />
+      <Button className="start" onClick={() => navigate("/input-form")}>
+        Next
       </Button>
     </Page>
   );

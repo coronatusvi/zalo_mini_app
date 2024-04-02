@@ -1,4 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
+import TodoBox from "../../components/todoBox";
+import { CustomDialog } from "react-st-modal";
+import CustomDialogContent from "../../components/dialogTaskForm";
+import { TaskModel } from "../../components/models/taskModel";
 
 function DragNDrop({ data }) {
   const [list, setList] = useState(data);
@@ -38,7 +42,7 @@ function DragNDrop({ data }) {
           )[0]
         );
         dragItem.current = targetItem;
-        localStorage.setItem("List", JSON.stringify(newList));
+        // localStorage.setItem("List", JSON.stringify(newList));
         return newList;
       });
     }
@@ -61,6 +65,14 @@ function DragNDrop({ data }) {
     return "dnd-item";
   };
 
+  const handleSaveTask = (updatedTask, grpI) => {
+    setList((oldList) => {
+      const newList = [...oldList];
+      newList[grpI].items.push(updatedTask);
+      return newList;
+    });
+  };
+
   if (list) {
     return (
       <div className="drag-n-drop">
@@ -76,12 +88,31 @@ function DragNDrop({ data }) {
           >
             <div className="group-header">
               <h3>{grp.title}</h3>
-              <button className="add-button">+</button>
+              <button
+                className="add-button"
+                onClick={async () => {
+                  let newtask = new TaskModel();
+                  await CustomDialog(
+                    <CustomDialogContent
+                      task={newtask}
+                      onSave={(updatedTask) =>
+                        handleSaveTask(updatedTask, grpI)
+                      }
+                    />,
+                    {
+                      title: "New Task!",
+                      showCloseIcon: true,
+                    }
+                  );
+                }}
+              >
+                +
+              </button>
             </div>
             {grp.items.map((item, itemI) => (
               <div
                 draggable
-                key={item}
+                key={itemI}
                 onDragStart={(e) => handletDragStart(e, { grpI, itemI })}
                 onDragEnter={
                   dragging
@@ -92,7 +123,7 @@ function DragNDrop({ data }) {
                 }
                 className={dragging ? getStyles({ grpI, itemI }) : "dnd-item"}
               >
-                {item}
+                <TodoBox data={item} />
               </div>
             ))}
           </div>

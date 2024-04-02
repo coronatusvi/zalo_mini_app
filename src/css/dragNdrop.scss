@@ -29,6 +29,7 @@
 .dnd-group h3 {
   margin: 0 0 5% 0;
 }
+
 .dnd-item {
   display: flex;
   justify-content: center;
@@ -39,18 +40,22 @@
   color: #282c34;
   font-weight: bold;
 }
+
 .dnd-item:not(:last-of-type) {
   margin-bottom: 0.5rem;
 }
+
 .dnd-item * {
   margin: 0;
   font-size: 1.2rem;
 }
+
 .group-title {
   text-align: left;
   margin-bottom: 0.5rem;
   font-size: 1.5rem;
 }
+
 .current {
   background-color: #282c34;
 }
@@ -88,4 +93,40 @@
     font-size: 16px;
     cursor: pointer;
   }
+}
+
+.todo {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.todo > div {
+  display: flex;
+  justify-content: space-between;
+}
+.todo > div > .todo-date {
+  font-size: 8px;
+  align-items: flex-end;
+}
+
+.task-todo > div {
+  padding: 2%;
+  display: flex;
+  flex-direction: row;
+  height: 50vh;
+}
+
+.task-todo > div > .task-dialog-time {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.task-content {
+}
+
+.handle-todo {
+  display: flex;
+  justify-content: center;
+  width: 90%;
 }
