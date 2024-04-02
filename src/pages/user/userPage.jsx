@@ -42,10 +42,10 @@ export default function UserPage() {
                 <Text>About</Text>
               </List.Item>
               <List.Item
-                onClick={() => navigate("/form")}
+                onClick={() => navigate("/picker")}
                 suffix={<Icon icon="zi-arrow-right" />}
               >
-                <Text>Form Update</Text>
+                <Text>Picker</Text>
               </List.Item>
             </List>
           </div>

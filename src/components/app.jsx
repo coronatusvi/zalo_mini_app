@@ -17,6 +17,7 @@ import BottomNavigationPage from "../pages/buttomNavigation";
 import ExamplePage from "../pages/product/listUserPage";
 import ItemPage from "../pages/product/listIemImage";
 import DemoDragNdrop from "../pages/dragNdrop";
+import PagePicker from "../pages/newTech/pickerScreen";
 
 const MyApp = () => {
   return (
@@ -35,6 +36,10 @@ const MyApp = () => {
                 <Route
                   path="/drag"
                   element={<DemoDragNdrop></DemoDragNdrop>}
+                ></Route>
+                <Route
+                  path="/picker"
+                  element={<PagePicker></PagePicker>}
                 ></Route>
 
                 <Route path="/" element={<UserPage></UserPage>}></Route>

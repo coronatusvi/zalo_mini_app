@@ -27,28 +27,30 @@ export default function CustomDialogContent({ task, onSave }) {
       <div>
         <Box className="task-dialog-time">
           <Input
-            label="Time"
-            type="time"
-            name="time"
-            value={formData.time}
-            onChange={handleChange}
-          />
-          <Input
             label="Date"
             type="date"
             name="date"
             value={formData.date}
             onChange={handleChange}
           />{" "}
+          <Input
+            label="Time"
+            type="time"
+            name="time"
+            value={formData.time}
+            onChange={handleChange}
+          />
         </Box>
-        <Input
-          label="Content"
-          type="content"
-          name="content"
-          value={formData.content}
-          onChange={handleChange}
-          className="task-content"
-        />
+        <div>
+          <Input
+            label="Content"
+            type="content"
+            name="content"
+            value={formData.content}
+            onChange={handleChange}
+            className="task-content"
+          />
+        </div>
       </div>
       <Button className="handle-todo" onClick={handleSave}>
         Save

@@ -117,12 +117,17 @@
   height: 50vh;
 }
 
+.task-todo > div > div {
+  margin: 10px;
+}
+
 .task-todo > div > .task-dialog-time {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  width: 35vw;
 }
 .task-content {
+  width: 40;
 }
 
 .handle-todo {
