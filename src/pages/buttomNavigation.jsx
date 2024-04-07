@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BottomNavigation, Icon, Page, useNavigate } from "zmp-ui";
+import { BottomNavigation, Icon, useNavigate } from "zmp-ui";
 
 const BottomNavigationPage = (props) => {
   const [activeTab, setActiveTab] = useState("me");

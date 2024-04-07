@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ImageViewer, Box, Text } from "zmp-ui";
+import { ImageViewer, Box, Text, Input } from "zmp-ui";
 import { fetchImages } from "../../apis/imageDataApi";
 import LoadingPage from "../../components/utils/loadingPage";
 
@@ -7,12 +7,31 @@ export default function ItemPage() {
   const [visible, setVisible] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [images, setImages] = useState([]);
+  const [imagesSearch, setImagesSearch] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [isSearch, setIsSearch] = useState("");
+  function handleSearch() {
+    if (isSearch == "") {
+      console.log("nhả");
+      setImages(imagesSearch); // Atur ulang status gambar ke gambar asli
+    } else {
+      console.log("9");
+      let filteredImages = images.filter((image) =>
+        image.key.includes(isSearch)
+      );
+      setImages(filteredImages);
+      // Perbarui status gambar yang difilter
+    }
+    console.log("isSearch", isSearch);
+  }
+  useEffect(() => {
+    handleSearch();
+  }, [isSearch]);
   useEffect(() => {
     const fetchData = async () => {
       const fetchedImages = await fetchImages();
       setImages(fetchedImages);
+      setImagesSearch(fetchedImages);
       setIsLoading(true);
     };
 
@@ -25,6 +44,15 @@ export default function ItemPage() {
         <>
           {" "}
           <Text.Title size="small">ImageViewer</Text.Title>
+          <Input.Search
+            label="Cari berdasarkan judul"
+            helperText="Masukkan judul gambar untuk mencari"
+            loading={false}
+            onChange={(e) => {
+              // Filter gambar berdasarkan judul
+              setIsSearch(e.target.value);
+            }}
+          />
           <Box mt={6}>
             <Box>
               <Text.Title size="small">Khi nào bạn cần?</Text.Title>
@@ -49,7 +77,7 @@ export default function ItemPage() {
                       height: "69px",
                       borderRadius: "8px",
                       overflow: "hidden",
-                      margin: "3px",
+                      marginBottom: "70px",
                     }}
                   >
                     <img
@@ -66,6 +94,7 @@ export default function ItemPage() {
                       src={img.src}
                       alt={img.alt}
                     />
+                    <Text style={{ position: "absolute" }}>{img.key}</Text>
                   </Box>
                 ))}
               </Box>
@@ -74,7 +103,7 @@ export default function ItemPage() {
                 activeIndex={activeIndex}
                 images={images}
                 visible={visible}
-              />
+              ></ImageViewer>
             </Box>
           </Box>
         </>

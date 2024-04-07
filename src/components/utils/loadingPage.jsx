@@ -1,5 +1,5 @@
 import React from "react";
-import { Page, Spinner, Box, Text } from "zmp-ui";
+import { Spinner, Box, Text } from "zmp-ui";
 
 export default function LoadingPage() {
   return (

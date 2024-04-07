@@ -8,6 +8,7 @@ export const fetchImages = async () => {
     const images = data.photos.map((photo) => ({
       src: photo.url,
       alt: photo.title,
+      title: photo.title,
       key: photo.id.toString(),
     }));
 
