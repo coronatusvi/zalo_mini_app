@@ -18,6 +18,7 @@ import ExamplePage from "../pages/product/listUserPage";
 import ItemPage from "../pages/product/listIemImage";
 import DemoDragNdrop from "../pages/dragNdrop";
 import PagePicker from "../pages/newTech/pickerScreen";
+import BarcodeScanner from "../pages/react-qr-barcode-scanner";
 
 const MyApp = () => {
   return (
@@ -48,6 +49,11 @@ const MyApp = () => {
                 <Route
                   path="/user-detail"
                   element={<UserDetailPage></UserDetailPage>}
+                ></Route>
+                {/* react-qr-barcode-scanner */}
+                <Route
+                  path="/react-qr-barcode-scanner"
+                  element={<BarcodeScanner></BarcodeScanner>}
                 ></Route>
               </AnimationRoutes>
             </Page>

@@ -14,7 +14,10 @@ const HomePage = () => {
         Todo Smart
       </Button>
       <hr />
-      <Button className="start" onClick={() => navigate("/input-form")}>
+      <Button
+        className="start"
+        onClick={() => navigate("/react-qr-barcode-scanner")}
+      >
         Next
       </Button>
     </Page>
